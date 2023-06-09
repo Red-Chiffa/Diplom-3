@@ -13,11 +13,11 @@ public class MainPage {
     private final By authorizationButton = By.xpath(".//*[text() = 'Войти в аккаунт']");
     private final By userAccountButton = By.xpath("//a[@class='AppHeader_header__link__3D_hX' and @href='/account']");
     private final By sauceButton = By.xpath("//span[text()='Соусы']/..");
-    private final By checkSauceDisplayed = By.xpath(".//section[1]/div[2]/h2[2]");
+    private final By checkSauceDisplayed = By.xpath("//div[contains(span/text(),'Соусы') and contains(@class,'current')]");
     private final By bunsButton = By.xpath("//span[text()='Булки']/..");
-    private final By  checkBunsDisplayed = By.xpath(".//section[1]/div[2]/h2[1]");
+    private final By  checkBunsDisplayed = By.xpath("//div[contains(span/text(),'Булки') and contains(@class,'current')]");
     private final By fillingButton = By.xpath("//span[text()='Начинки']/..");
-    private final By checkFillingDisplayed = By.xpath(".//section[1]/div[2]/h2[3]");
+    private final By checkFillingDisplayed = By.xpath("//div[contains(span/text(),'Начинки') and contains(@class,'current')]");
     private final By orderButton = By.className("button_button__33qZ0");
 
     public void openMainPage (){
@@ -55,8 +55,8 @@ public class MainPage {
     }
 
     public boolean bunsButtonDisplayed() {
-        driver.findElement(fillingButton).click();
-        WebElement textButton = new WebDriverWait(driver,15).until(ExpectedConditions.visibilityOfElementLocated(orderButton));
+        driver.findElement(sauceButton).click();
+        new WebDriverWait(driver,15).until(ExpectedConditions.visibilityOfElementLocated(orderButton));
         driver.findElement(bunsButton).click();
 
         return driver.findElement(checkBunsDisplayed).isDisplayed();
